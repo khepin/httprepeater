@@ -3,6 +3,7 @@ package cmd
 import (
 	"io/ioutil"
 	"net/http"
+	"os"
 	"strings"
 
 	"github.com/labstack/echo/v4"
@@ -38,7 +39,8 @@ var serveCmd = &cobra.Command{
 				"headers": c.Request().Header,
 			})
 		})
-		e.Logger.Fatal(e.Start("127.0.0.1:1323"))
+		port := os.Getenv("PORT")
+		e.Logger.Fatal(e.Start(":" + port))
 	},
 }
 
