@@ -34,7 +34,7 @@ var serveCmd = &cobra.Command{
 
 			return c.JSON(http.StatusOK, map[string]interface{}{
 				"method":  c.Request().Method,
-				"uri":     c.Request().RequestURI,
+				"uri":     c.Request().URL.RequestURI(),
 				"body":    string(content),
 				"headers": c.Request().Header,
 			})
