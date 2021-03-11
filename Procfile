@@ -1,1 +1,1 @@
-web: "bin/httprepeater serve"
+web: "./bin/httprepeater serve"
