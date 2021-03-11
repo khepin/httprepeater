@@ -40,7 +40,11 @@ var serveCmd = &cobra.Command{
 			})
 		})
 		port := os.Getenv("PORT")
-		e.Logger.Fatal(e.Start(":" + port))
+		addr := ":" + port
+		if port == "" {
+			addr = "127.0.0.1:1323"
+		}
+		e.Logger.Fatal(e.Start(addr))
 	},
 }
 

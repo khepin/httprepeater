@@ -6,3 +6,7 @@ Content-Type: application/json
 {
     "get": "with a body???"
 }
+
+###
+
+GET https://httprepeater.herokuapp.com/test
