@@ -32,19 +32,10 @@ var serveCmd = &cobra.Command{
 			defer c.Request().Body.Close()
 			content, _ := ioutil.ReadAll(c.Request().Body)
 
-			h := http.Header{}
-			for name, values := range c.Request().Header {
-				if strings.HasPrefix(strings.ToLower(name), "x-") {
-					// Heroku adds a lot of these that throw things off
-					continue
-				}
-				h[name] = values
-			}
 			return c.JSON(http.StatusOK, map[string]interface{}{
-				"method":  c.Request().Method,
-				"uri":     c.Request().URL.RequestURI(),
-				"body":    string(content),
-				"headers": h,
+				"method": c.Request().Method,
+				"uri":    c.Request().URL.RequestURI(),
+				"body":   string(content),
 			})
 		})
 		port := os.Getenv("PORT")
