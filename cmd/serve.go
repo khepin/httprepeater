@@ -1,10 +1,10 @@
 package cmd
 
 import (
+	"encoding/json"
 	"io/ioutil"
 	"net/http"
 	"os"
-	"strings"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
@@ -20,14 +20,8 @@ var serveCmd = &cobra.Command{
 		e := echo.New()
 		e.Use(middleware.Logger())
 		e.Any("/test", func(c echo.Context) error {
-			for name, values := range c.Request().Header {
-				if !strings.HasPrefix(strings.ToLower(name), "httprepeater-") {
-					continue
-				}
-				for _, value := range values {
-					c.Response().Header().Add(name, value)
-				}
-			}
+			headers, _ := json.Marshal(c.Request().Header)
+			c.Response().Header().Add("httprepeater-allreceived", string(headers))
 
 			defer c.Request().Body.Close()
 			content, _ := ioutil.ReadAll(c.Request().Body)
