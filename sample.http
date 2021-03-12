@@ -2,6 +2,7 @@ POST http://localhost:1323/test
 httprepeater-Yolo: for-sure
 httprepeater-Yolo: bob
 Content-Type: application/json
+X-bob: crap
 
 {
     "get": "with a body???"
