@@ -33,9 +33,6 @@ var serveCmd = &cobra.Command{
 			})
 		})
 
-		e.Any("/*", func(c echo.Context) error {
-			return c.JSON(http.StatusOK, "hi there")
-		})
 		port := os.Getenv("PORT")
 		addr := ":" + port
 		if port == "" {
