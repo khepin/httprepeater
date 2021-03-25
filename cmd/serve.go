@@ -31,6 +31,7 @@ var serveCmd = &cobra.Command{
 				"uri":    c.Request().URL.RequestURI(),
 				"body":   string(content),
 				"scheme": c.Request().URL.Scheme,
+				"port":   c.Request().URL.Port(),
 			})
 		})
 
